@@ -1,11 +1,11 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import Link from "next/link";
 
 type Props = { nowDate: string; pageTitle: string };
 
-export default function SSRDemo(props: Props) {
+export default function ISRDemo(props: Props) {
   return (
     <div className={styles.container}>
       <Head>
@@ -28,13 +28,12 @@ export default function SSRDemo(props: Props) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async (
-  context
-) => {
+export const getStaticProps: GetStaticProps<Props> = async (context) => {
   return {
     props: {
       nowDate: new Date().toLocaleString(),
-      pageTitle: "SSR Demo",
+      pageTitle: "ISR Demo",
+      revalidate: 5, // ISR settings
     },
   };
 };

@@ -17,13 +17,22 @@ const Home: NextPage = () => {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <Link href={"/ssr-demo"}>
-          <a>SSR Demo</a>
-        </Link>
+        <p className={styles.description}>
+          <Link href={"/ssr-demo"}>
+            <a>SSR Demo</a>
+          </Link>
+        </p>
 
         <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.js</code>
+          <Link href={"/ssg-demo"}>
+            <a>SSG Demo</a>
+          </Link>
+        </p>
+
+        <p className={styles.description}>
+          <Link href={"/isr-demo"}>
+            <a>ISR Demo</a>
+          </Link>
         </p>
 
         <div className={styles.grid}>
