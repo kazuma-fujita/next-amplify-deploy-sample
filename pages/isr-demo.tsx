@@ -33,7 +33,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     props: {
       nowDate: new Date().toLocaleString(),
       pageTitle: "ISR Demo",
-      revalidate: 5, // ISR settings
     },
+    revalidate: 5, // ISR settings
   };
 };
