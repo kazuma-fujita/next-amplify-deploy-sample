@@ -119,3 +119,16 @@
     flex-direction: column;
   }
 }
+
+.button {
+  color: #fff;
+  background-color: #0070f3;
+  padding: 1rem 2rem;
+  border-radius: 100vh;
+}
+.button:hover,
+.button:focus,
+.button:active {
+  color: #fff;
+  background: #0030f3;
+}

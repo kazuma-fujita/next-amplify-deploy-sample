@@ -18,6 +18,12 @@ const Home: NextPage = () => {
         </h1>
 
         <p className={styles.description}>
+          <Link href={"/todo/list"}>
+            <a>Todo Demo</a>
+          </Link>
+        </p>
+
+        <p className={styles.description}>
           <Link href={"/ssr-demo"}>
             <a>SSR Demo</a>
           </Link>

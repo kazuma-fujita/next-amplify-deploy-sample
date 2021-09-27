@@ -10,7 +10,7 @@ Amplify.configure(awsconfig);
 
 type Props = { pageTitle: string; metaDescription: string };
 
-const TodoListPage: React.FC<Props> = (props: Props) => {
+const CreateTodoPage: React.FC<Props> = (props: Props) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -21,21 +21,21 @@ const TodoListPage: React.FC<Props> = (props: Props) => {
 
       <main className={styles.main}>
         <h2 className={styles.title}>{props.pageTitle}</h2>
-        <Link href={"/todo/create"}>
-          <a className={styles.button}>Create todo</a>
+        <input />
+        <Link href={"/todo/list"}>
+          <a className={styles.button}>Create</a>
         </Link>
-        <ListTodos />
       </main>
     </div>
   );
 };
 
-export default TodoListPage;
+export default CreateTodoPage;
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
   return {
     props: {
-      pageTitle: "Todo List",
+      pageTitle: "Create Todo",
       metaDescription: "This page is sample of Amplify API.",
     },
   };
