@@ -1,18 +1,30 @@
-import { useFetchListTodos } from "../hooks/todo/use-fetch-list-todos";
-import styles from "../styles/Home.module.css";
+import { useFetchListTodos } from '../hooks/todo/use-fetch-list-todos';
+import styles from '../styles/Home.module.css';
 
 export const ListTodos: React.FC = () => {
-  const { data, setData, error } = useFetchListTodos();
+  const { error, data } = useFetchListTodos();
+  console.log('data:', data);
+  console.log('error:', error);
+  if (error) return <p className={styles.description}>{error.message}</p>;
+  if (!data) return <p className={styles.description}>Now Loading</p>;
   return (
-    <>
-      {error && <p className={styles.description}>{error}</p>}
-      {!error && !data && <p className={styles.description}>Now Loading</p>}
-      {data &&
-        data.map((item) => (
-          <div className={styles.grid} key={item.id}>
-            {item.name}&nbsp;{item.description}
-          </div>
-        ))}
-    </>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Created at</th>
+        <th>Updated at</th>
+      </tr>
+      {data.map((item) => (
+        <tr key={item.id}>
+          <td>{item.id}</td>
+          <td>{item.name}</td>
+          <td>{item.description}</td>
+          <td>{item.createdAt}</td>
+          <td>{item.updatedAt}</td>
+        </tr>
+      ))}
+    </table>
   );
 };
