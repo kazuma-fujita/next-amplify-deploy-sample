@@ -27,3 +27,7 @@ th,
 td {
   padding: 10px; /* 余白指定 */
 }
+
+label {
+  padding: 10px;
+}

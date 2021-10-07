@@ -6,6 +6,7 @@ import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import { createTodo } from '../../src/graphql/mutations';
 import { ListTodos } from '../../components/list-todos';
+import { TodoForm } from '../../components/todo-form';
 Amplify.configure(awsconfig);
 
 type Props = { pageTitle: string; metaDescription: string };
@@ -20,10 +21,12 @@ const TodoListPage: React.FC<Props> = (props: Props) => {
       </Head>
 
       <main className={styles.main}>
-        <h2 className={styles.title}>{props.pageTitle}</h2>
-        <Link href={'/todo/create'}>
-          <a className={styles.button}>Create todo</a>
-        </Link>
+        <div className={styles.mb}>
+          <h2 className={styles.title}>{props.pageTitle}</h2>
+        </div>
+        <div className={styles.mb}>
+          <TodoForm />
+        </div>
         <ListTodos />
       </main>
     </div>
