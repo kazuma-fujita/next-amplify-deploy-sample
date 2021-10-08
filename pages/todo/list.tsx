@@ -1,10 +1,8 @@
-import Amplify, { API, graphqlOperation } from 'aws-amplify';
+import Amplify from 'aws-amplify';
 import awsconfig from '../../src/aws-exports';
 import Head from 'next/head';
 import styles from '../../styles/Home.module.css';
 import { GetStaticProps } from 'next';
-import Link from 'next/link';
-import { createTodo } from '../../src/graphql/mutations';
 import { ListTodos } from '../../components/list-todos';
 import { TodoForm } from '../../components/todo-form';
 Amplify.configure(awsconfig);

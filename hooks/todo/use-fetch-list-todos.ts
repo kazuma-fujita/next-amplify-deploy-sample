@@ -13,6 +13,6 @@ export const useFetchListTodos = () => {
       throw Error('An API fetched data but it returned null.');
     }
   };
-  const { error, data } = useSWR('listTodos', fetcher);
+  const { data, error } = useSWR('listTodos', fetcher);
   return { data, error };
 };
