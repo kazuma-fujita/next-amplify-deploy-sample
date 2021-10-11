@@ -2,6 +2,7 @@ import { FormEvent } from 'react';
 import { useAddTodo } from '../hooks/todo/use-add-todo';
 import { useInput } from '../hooks/todo/use-input';
 import styles from '../styles/Home.module.css';
+import { ErrorAlert } from './error-alert';
 
 export const TodoForm: React.FC = () => {
   const { addTodo, isLoading, error } = useAddTodo();
@@ -23,11 +24,7 @@ export const TodoForm: React.FC = () => {
         </label>
         <input type='submit' value='Submit' disabled={isLoading} />
       </form>
-      {error && (
-        <div className={styles.mt}>
-          <div className={styles.error}>{error.message}</div>
-        </div>
-      )}
+      {error && <ErrorAlert>{error}</ErrorAlert>}
     </>
   );
 };

@@ -3,14 +3,16 @@ import styles from '../styles/Home.module.css';
 import { useSubscribeTodo } from '../hooks/todo/use-subscribe-todo';
 import { useRemoveTodo } from '../hooks/todo/use-remove-todo';
 import { Todo } from '../src/API';
+import { NextPage } from 'next';
+import { ErrorAlert } from './error-alert';
 
-export const ListTodos: React.FC = () => {
+export const ListTodos = () => {
   const { error, data } = useFetchListTodos();
-  // useSubscribeTodo();
+  useSubscribeTodo();
   const { removeTodo } = useRemoveTodo();
   console.log('data:', data);
   console.log('error:', error);
-  if (error) return <p className={styles.description}>{error.message}</p>;
+  if (error) return <ErrorAlert>{error}</ErrorAlert>;
   if (!data) return <p className={styles.description}>Now Loading</p>;
   if (data.length === 0) return <p className={styles.description}>Please, create todo.</p>;
   return (

@@ -15,8 +15,10 @@ export const useSubscribeTodo = () => {
     const subscription = pubSubClient.subscribe({
       next: (payload: { provider: AWSAppSyncRealTimeProvider; value: GraphQLResult<OnCreateTodoSubscription> }) => {
         if (payload.value.data && payload.value.data.onCreateTodo) {
+          const newTodo = payload.value.data.onCreateTodo;
           console.log('Create Subscribe data: ', payload.value.data.onCreateTodo);
-          mutate('listTodos');
+          mutate('listTodos', async (data: Todo[]) => [...data, newTodo], false);
+          // mutate('listTodos');
         }
       },
       error: (error) => console.error('Create subscribing error:', error),
@@ -33,7 +35,8 @@ export const useSubscribeTodo = () => {
         if (payload.value.data && payload.value.data.onDeleteTodo) {
           console.log('Delete Subscribe data: ', payload.value.data.onDeleteTodo);
           const deleteId = payload.value.data.onDeleteTodo.id;
-          mutate('listTodos');
+          mutate('listTodos', async (data: Todo[]) => data.filter((item) => item.id !== deleteId), false);
+          // mutate('listTodos');
         }
       },
       error: (error) => console.error('Delete subscribing error:', error),
