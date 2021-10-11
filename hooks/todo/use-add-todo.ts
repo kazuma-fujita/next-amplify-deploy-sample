@@ -5,26 +5,6 @@ import { CreateTodoMutationVariables, CreateTodoInput, Todo, CreateTodoMutation 
 import { useSWRConfig } from 'swr';
 import { GraphQLResult } from '@aws-amplify/api';
 
-// export const useAddTodo = () => {
-//   const [isLoading, setIsLoading] = useState(false);
-//   const [error, setError] = useState<Error | null>(null);
-//   const addTodo = useCallback(async (name: string, description: string) => {
-//     setIsLoading(true);
-//     try {
-//       const todo: CreateTodoInput = { name: name, description: description };
-//       const variables: CreateTodoMutationVariables = { input: todo };
-//       const newTodo = await API.graphql(graphqlOperation(createTodo, variables));
-//       setIsLoading(false);
-//       console.log('newTodo:', newTodo);
-//     } catch (error) {
-//       setIsLoading(false);
-//       setError(error as Error);
-//       console.error('create error:', error);
-//     }
-//   }, []);
-//   return { addTodo, isLoading, error };
-// };
-
 export const useAddTodo = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -40,6 +20,7 @@ export const useAddTodo = () => {
           const variables: CreateTodoMutationVariables = { input: todo };
           const result: GraphQLResult<CreateTodoMutation> = await API.graphql(graphqlOperation(createTodo, variables));
           setIsLoading(false);
+          setError(null);
           if (result.data && result.data.createTodo) {
             console.log('newTodo:', result.data.createTodo);
             return [...data, result.data.createTodo];

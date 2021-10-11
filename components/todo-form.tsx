@@ -10,8 +10,6 @@ export const TodoForm: React.FC = () => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(name.value);
-    console.log(description.value);
     addTodo(name.value, description.value);
   };
   return (
@@ -25,7 +23,11 @@ export const TodoForm: React.FC = () => {
         </label>
         <input type='submit' value='Submit' disabled={isLoading} />
       </form>
-      {error && <div className={styles.error}>{error.message}</div>}
+      {error && (
+        <div className={styles.mt}>
+          <div className={styles.error}>{error.message}</div>
+        </div>
+      )}
     </>
   );
 };

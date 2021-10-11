@@ -6,7 +6,6 @@ import { Todo } from '../src/API';
 
 export const ListTodos: React.FC = () => {
   const { error, data } = useFetchListTodos();
-  // useSubscribeTodo(data, mutate);
   // useSubscribeTodo();
   const { removeTodo } = useRemoveTodo();
   console.log('data:', data);

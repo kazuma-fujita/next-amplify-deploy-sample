@@ -146,6 +146,10 @@
   background: #b00020;
 }
 
+.mt {
+  margin-top: 2rem;
+}
+
 .mb {
   margin-bottom: 2rem;
 }
