@@ -2,16 +2,12 @@ import { useFetchListTodos } from '../hooks/todo/use-fetch-list-todos';
 import styles from '../styles/Home.module.css';
 import { useSubscribeTodo } from '../hooks/todo/use-subscribe-todo';
 import { useRemoveTodo } from '../hooks/todo/use-remove-todo';
-import { Todo } from '../src/API';
-import { NextPage } from 'next';
 import { ErrorAlert } from './error-alert';
 
 export const ListTodos = () => {
   const { error, data } = useFetchListTodos();
-  useSubscribeTodo();
   const { removeTodo } = useRemoveTodo();
-  console.log('data:', data);
-  console.log('error:', error);
+  useSubscribeTodo();
   if (error) return <ErrorAlert>{error}</ErrorAlert>;
   if (!data) return <p className={styles.description}>Now Loading</p>;
   if (data.length === 0) return <p className={styles.description}>Please, create todo.</p>;

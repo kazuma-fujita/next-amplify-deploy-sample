@@ -1,14 +1,13 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import { QueryClient, QueryClientProvider } from 'react-query';
-
-// const queryClient = new QueryClient();
+import { SWRConfig } from 'swr';
+import { loggingMiddleware } from '../lib/loggingMiddleware';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    // <QueryClientProvider client={queryClient}>
-    <Component {...pageProps} />
-    // </QueryClientProvider>
+    <SWRConfig value={{ use: [loggingMiddleware] }}>
+      <Component {...pageProps} />
+    </SWRConfig>
   );
 }
 export default MyApp;

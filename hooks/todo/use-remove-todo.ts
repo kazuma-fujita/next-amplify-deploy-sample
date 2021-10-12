@@ -7,7 +7,7 @@ import { parseErrorResponse } from '../../lib/parse-error-response';
 
 export const useRemoveTodo = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Error | null>(null);
   const removeTodo = useCallback(async (id: string) => {
     setIsLoading(true);
     try {

@@ -1,9 +1,15 @@
 import { GraphQLResult } from '@aws-amplify/api';
 
-export const parseErrorResponse = (error: any): string => {
-  const result = error as GraphQLResult;
-  // const res = { errors: [{ message: 'error1' }, { message: 'error2' }] };
-  return result.errors
-    ? result.errors.map((error) => error.message).join('\n')
-    : 'The error object could not be parsed.';
+export const parseErrorResponse = (error: any): Error | null => {
+  if (!error) return null;
+  const errorResult = error as Error;
+  const graphqlResult = error as GraphQLResult;
+  return Error(
+    errorResult.message
+      ? errorResult.message
+      : graphqlResult.errors
+      ? graphqlResult.errors.map((error) => error.message).join('\n')
+      : 'The error object could not be parsed.'
+  );
+  // return Error(result.errors ? result.errors.map((error) => error.message).join('\n') : result.message);
 };
